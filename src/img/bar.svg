@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="3.11127in"
+   height="0.53475in"
+   viewBox="0 0 448 77"
+   id="svg4790"
+   version="1.1"
+   inkscape:version="0.91 r"
+   sodipodi:docname="bar.svg">
+  <metadata
+     id="metadata4797">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4795" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="709"
+     id="namedview4793"
+     showgrid="false"
+     inkscape:zoom="2.2998826"
+     inkscape:cx="173.74235"
+     inkscape:cy="30.762488"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4790" />
+  <path
+     id="Zaznaczenie"
+     fill="none"
+     stroke="black"
+     stroke-width="1"
+     d="M 344.00,0.00            C 344.00,0.00 423.00,0.00 423.00,0.00              423.00,0.00 436.00,0.00 436.00,0.00              444.47,0.05 447.84,2.03 448.00,11.00              448.00,11.00 448.00,19.00 448.00,19.00              447.83,28.80 443.75,29.98 435.00,30.00              435.00,30.00 418.00,30.00 418.00,30.00              418.00,30.00 418.00,65.00 418.00,65.00              417.91,78.61 410.78,77.07 400.00,77.00              396.50,76.98 393.25,77.11 390.57,74.43              387.69,71.55 388.01,67.74 388.00,64.00              388.00,64.00 388.00,30.00 388.00,30.00              388.00,30.00 0.00,30.00 0.00,30.00              0.00,30.00 0.00,0.00 0.00,0.00              0.00,0.00 344.00,0.00 344.00,0.00 Z"
+     style="stroke:none;stroke-opacity:1;fill:#53555d;fill-opacity:1" />
+</svg>
