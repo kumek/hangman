@@ -25,9 +25,13 @@
     "babel-preset-react": "^6.11.1",
     "babel-register": "^6.11.6",
     "colors": "^1.1.2",
+    "css-loader": "^0.23.1",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.14.0",
+    "node-sass": "^3.8.0",
     "open": "0.0.5",
+    "sass-loader": "^4.0.0",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2"

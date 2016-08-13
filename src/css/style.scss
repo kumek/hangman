@@ -1,0 +1,71 @@
+$bar_color: #53555d;
+$folk_face_color: #fece89;
+$folk_mouth_color: #fff;
+$folk_ears_color: #febd72;
+$folk_eyes_color: #3e3e3f;
+$folk_mole_color: #a0a0a0;
+$folk_hair_color: #ebc58f;
+$folk_earring_color: #a0a0a0;
+$folk_corpus_light_color: #8ac657;
+$folk_corpus_dark_color: #4ea06a;
+$folk_legs_color: #3c5a92;
+
+$text_main_color: #4d69fa;
+$text_second_color: #53555d;
+$text_third_color: #ffba00;
+
+$body_bg_color: #3b4163;
+
+$app_bg_color: #f5f5f5;
+$app_shadow_color: #222;
+
+$text_font_family: 'Aller Display';
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: $body_bg_color;
+}
+
+
+
+$app_size: 80;
+$app_border_radius: 10px;
+
+
+#app {
+    position: relative;
+
+    @media screen and (min-width: 991px) {
+        width: #{$app_size}vw;
+        height: #{$app_size}vh;
+        margin: #{(100-$app_size)/2}vh auto;
+        border-radius: $app_border_radius;
+    }
+
+    @media screen and (max-width: 990px) {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        border-radius: 0;
+    }
+
+
+
+    background-color: $app_bg_color;
+
+
+    box-shadow: 0 0 30px $app_shadow_color;
+    overflow: hidden;
+    &:after {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        content: '';
+        width: 0;
+        height: 0;
+        $triangle_size: #{$app_size/3.14}vw;
+        border-bottom: $triangle_size solid $text_main_color;
+        border-left: $triangle_size solid transparent;
+    }
+}

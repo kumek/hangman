@@ -1,4 +1,6 @@
 import React from 'react';
+import '../css/style.scss';
+import '../fonts/'
 
 class App extends React.Component {
     render() {
