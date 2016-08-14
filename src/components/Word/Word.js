@@ -13,6 +13,7 @@ class Word extends React.Component {
             word: (new Array(11 - props.word.length).fill(undefined)).concat(props.word.split(''))
         };
     }
+
     getLetters(typedLetters) {
         return this.state.word.map((letter, index) => {
             return (

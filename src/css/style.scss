@@ -1,40 +1,40 @@
-$bar_color: #53555d;
-$folk_face_color: #fece89;
-$folk_mouth_color: #fff;
-$folk_ears_color: #febd72;
-$folk_eyes_color: #3e3e3f;
-$folk_mole_color: #a0a0a0;
-$folk_hair_color: #ebc58f;
-$folk_earring_color: #a0a0a0;
-$folk_corpus_light_color: #8ac657;
-$folk_corpus_dark_color: #4ea06a;
-$folk_legs_color: #3c5a92;
+
+
 
 $text_main_color: #4d69fa;
 $text_second_color: #53555d;
 $text_third_color: #ffba00;
+$text_bright_color: #fff;
 
 $body_bg_color: #3b4163;
 
 $app_bg_color: #f5f5f5;
+$app_info_bg_color: rgba(59, 65, 99, 0.5);
 $app_shadow_color: #222;
+$app_letter_bg_color: #53555d;
+$app_letter_bg_color_empty: rgba(red($app_letter_bg_color), green($app_letter_bg_color), blue($app_letter_bg_color), 0.1);
+$app_letter_bg_color_filled: rgba(red($app_letter_bg_color), green($app_letter_bg_color), blue($app_letter_bg_color), 0.95);
 
-$text_font_family: 'Aller Display';
-
-body {
-    margin: 0;
-    padding: 0;
-    background-color: $body_bg_color;
-}
-
-
+$text_font_family: 'Source Sans Pro', sans-serif;
 
 $app_size: 80;
+$app_padding: 2vw;
 $app_border_radius: 10px;
 
 
+body {
+    color: rgb(83, 85, 93);
+    margin: 0;
+    padding: 0;
+    background-color: $body_bg_color;
+    * {
+        font-family: $text_font_family, serif;
+    }
+}
+
 #app {
     position: relative;
+    overflow: hidden;
 
     @media screen and (min-width: 991px) {
         width: #{$app_size}vw;
@@ -50,13 +50,17 @@ $app_border_radius: 10px;
         border-radius: 0;
     }
 
+    @media
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi) {
+        border-radius: $app_border_radius*2;
+    }
 
 
     background-color: $app_bg_color;
 
 
     box-shadow: 0 0 30px $app_shadow_color;
-    overflow: hidden;
     &:after {
         position: absolute;
         bottom: 0;
@@ -67,5 +71,180 @@ $app_border_radius: 10px;
         $triangle_size: #{$app_size/3.14}vw;
         border-bottom: $triangle_size solid $text_main_color;
         border-left: $triangle_size solid transparent;
+    }
+}
+
+
+$app_letter_box_radius: 5px;
+$app_letter_size: 6.0vw;
+$app_letter_margin: $app_letter_size/18;
+.word-container {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: $app_padding;
+
+    z-index: 900;
+
+    .letter {
+        display: block;
+        float: left;
+        border-radius: $app_letter_box_radius;
+        background-color: $app_letter_bg_color_empty;
+
+        width: $app_letter_size;
+        height: $app_letter_size*1.2;
+        line-height: $app_letter_size*1.2;
+        margin: 0;
+
+        text-align: center;
+        text-transform: uppercase;
+        font-size: $app_letter_size*0.8;
+        font-weight: bold;
+        color: $text_bright_color;
+
+        @media
+        (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            border-radius: $app_letter_box_radius*2;
+
+        }
+
+        &.filled {
+            background-color: $app_letter_bg_color_filled;
+        }
+    }
+}
+
+$missed_letters_font_size: 36pt;
+$missed_letter_spacing: 9pt;
+.missed-letters-container {
+    position: absolute;
+    left: 50%;
+    right: 0;
+    top: 0;
+    text-transform: uppercase;
+
+    .title {
+
+    }
+    .missed {
+        letter-spacing: $missed_letter_spacing;
+        color: $text_main_color;
+        font-size: $missed_letters_font_size;
+        font-weight: bold;
+    }
+
+}
+
+
+$bar_color: #53555d;
+$folk_face_color: #fece89;
+$folk_mouth_color: #fff;
+$folk_ears_color: #febd72;
+$folk_eyes_color: #3e3e3f;
+$folk_mole_color: #a0a0a0;
+$folk_hair_color: #ebc58f;
+$folk_earring_color: #a0a0a0;
+$folk_corpus_light_color: #8ac657;
+$folk_corpus_dark_color: #4ea06a;
+$folk_legs_color: #3c5a92;
+#hangman {
+    width: #{$app_size/2}vw;
+    height: #{$app_size/1.2}vh;
+    margin-top: $app_padding;
+    margin-left: -8vw;
+
+}
+
+.hangman-color {
+    &-bar {
+        fill: $bar_color;
+    }
+    &-skin {
+        fill: $folk_face_color;
+    }
+    &-mouth {
+        fill: $folk_mouth_color;
+    }
+    &-ears {
+        fill: $folk_ears_color;
+    }
+    &-eyes {
+        fill: $folk_eyes_color;
+    }
+    &-mole {
+        fill: $folk_mole_color;
+    }
+    &-scar {
+        fill: $folk_ears_color
+    }
+    &-hair {
+        fill: $folk_hair_color;
+    }
+    &-earring {
+        fill: $folk_earring_color;
+    }
+    &-corpus-light {
+        fill: $folk_corpus_light_color;
+    }
+    &-corpus-dark {
+        fill: $folk_corpus_dark_color;
+    }
+    &-legs {
+        fill: $folk_legs_color;
+    }
+}
+
+
+
+$info_title_font_size: 35pt;
+$info_button_height: 10vh;
+$info_button_padding: 2.5vh;
+$info_button_font_size: 15pt;
+.info {
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: $app_info_bg_color;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+
+    .title {
+        color: $text_bright_color;
+        font-size: $info_title_font_size;
+        margin-top: 20vh;
+        text-transform: uppercase;
+
+    }
+    button {
+        text-transform: uppercase;
+
+        background: none;
+        border: 2px dashed $text_third_color;
+        color: $text_third_color;
+        border-radius: 5vh;
+        cursor: pointer;
+        font-size: $info_button_font_size;
+        padding: $info_button_font_size/2 $info_button_font_size;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover {
+            margin-top: -1px;
+            border: 3px dashed $text_third_color;
+
+
+        }
+
     }
 }

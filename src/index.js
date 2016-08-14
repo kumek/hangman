@@ -3,7 +3,14 @@ import { render } from 'react-dom';
 
 import App from './components/App';
 
+
+
+var setListener = function (callback) {
+    window.addEventListener('keydown', callback);
+};
+
 render(
-    <App />,
+    <App setListener={setListener}/>,
     document.getElementById('app')
 );
+

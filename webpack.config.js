@@ -18,18 +18,27 @@ export default {
     devServer: {
         contentBase: './src'
     },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
+    ],
+    resolve: {
+        root: [
+            path.resolve('./fonts')
+        ]
+    },
     module: {
         loaders: [
             {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel']},
             {test: /(\.css)$/, loaders: ['style', 'css']},
             {test: /\.scss$/, loaders: ['style', 'css', 'sass']},
-            {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-            {test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000'},
-            {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
-            {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'}
+            { test: /\.svg$/, loader: 'url?limit=65000&mimetype=image/svg+xml&name=public/fonts/[name].[ext]' },
+            { test: /\.woff$/, loader: 'url?limit=65000&mimetype=application/font-woff&name=public/fonts/[name].[ext]' },
+            { test: /\.woff2$/, loader: 'url?limit=65000&mimetype=application/font-woff2&name=public/fonts/[name].[ext]' },
+            { test: /\.eot$/, loader: 'url?limit=65000&mimetype=application/vnd.ms-fontobject&name=public/fonts/[name].[ext]' }
         ]
     },
     sassLoader: {
-        includePaths: [path.resolve(__dirname, "./css")]
+        includePaths: [path.resolve(__dirname, "./css") ]
     }
 };
