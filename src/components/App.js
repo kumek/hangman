@@ -7,22 +7,50 @@ import Word from './Word/Word';
 import Hangman from './Hangman/Hangman';
 import GameOver from './GameOver/GameOver';
 import GameWon from './GameWon/GameWon';
+import Loading from './Loading/Loading';
+
+const MAX_WORD_LENGTH = 11;
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            word: "katarakta",
+            word: '',
             typedLetters: [],
             lives: 11,
             gameOver: false,
-            gameWon: false
+            gameWon: false,
+            loading: true
         };
-        console.log(props);
+
         this.props.setListener(this.onKeyPress.bind(this));
 
         this.setNewGame = this.setNewGame.bind(this);
 
+    }
+
+    fetchNewWord(callback) {
+        fetch('http://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=false&includePartOfSpeech=noun&excludePartOfSpeech=given-name&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=11&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5')
+            .then((response) => {
+                return response.text();
+            })
+            .then((body) => {
+                var wordnik = JSON.parse(body);
+                callback(wordnik.word);
+                this.setState({
+                    loading: false
+                })
+            });
+    }
+
+    componentWillMount() {
+        //Fetch random word here
+        this.fetchNewWord(word => {
+            this.setState({
+                word: word.toLowerCase(),
+                loading: false
+            });
+        })
     }
 
     onKeyPress(event) {
@@ -70,29 +98,33 @@ class App extends React.Component {
                 gameOver: true
             });
         }
-
-
     }
 
     setNewGame() {
         this.setState({
-            word: "katarakta",
+            loading: true,
             typedLetters: [],
             lives: 11,
             gameOver: false,
             gameWon: false
         });
+        this.fetchNewWord(word => {
+            this.setState({
+                word: word.toLowerCase(),
+                loading: false
+            });
+        });
     }
 
     render() {
         return (
-            <div >
-                {this.state.gameOver ? <GameOver restartGame={this.setNewGame} /> : ''}
+            <div>
+                {this.state.loading ? <Loading /> : ''}
+                {this.state.gameOver ? <GameOver restartGame={this.setNewGame}/> : ''}
                 {this.state.gameWon ? <GameWon restartGame={this.setNewGame}/> : ''}
-
                 <Hangman lives={this.state.lives}/>
                 <MissedLetters word={this.state.word} typedLetters={this.state.typedLetters}/>
-                <Word word={this.state.word} typedLetters={this.state.typedLetters}/>
+                <Word maxWordLength={MAX_WORD_LENGTH} word={this.state.word} typedLetters={this.state.typedLetters}/>
             </div>
         );
     };

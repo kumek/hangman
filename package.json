@@ -4,9 +4,7 @@
   "description": "Hangman game",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel open:src lint:watch",
-    "open:src": "babel-node server.js",
-    "wtf": "webpack -display-error-details"
+    "open:src": "babel-node server.js"
   },
   "repository": {
     "type": "git",
