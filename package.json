@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "npm-run-all --parallel open:src lint:watch",
-    "open:src": "babel-node server.js"
+    "open:src": "babel-node server.js",
+    "wtf": "webpack -display-error-details"
   },
   "repository": {
     "type": "git",
