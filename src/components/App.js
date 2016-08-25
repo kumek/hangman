@@ -9,9 +9,11 @@ import GameOver from './GameOver/GameOver';
 import GameWon from './GameWon/GameWon';
 import Loading from './Loading/Loading';
 
-const MAX_WORD_LENGTH = 11;
 
 class App extends React.Component {
+
+    static get MAX_WORD_LENGTH() { return 11}
+
     constructor(props) {
         super(props);
         this.state = {
@@ -125,7 +127,7 @@ class App extends React.Component {
                 <GameWon gameWon={this.state.gameWon} restartGame={this.setNewGame}/>
                 <Hangman lives={this.state.lives}/>
                 <MissedLetters missedLetters={this.state.missedLetters}/>
-                <Word word={this.state.word} guessedLetters={this.state.guessedLetters}/>
+                <Word showAll={this.state.gameOver} word={this.state.word} guessedLetters={this.state.guessedLetters}/>
             </div>
         );
     };
