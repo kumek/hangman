@@ -18,6 +18,7 @@ class App extends React.Component {
             word: '',
             typedLetters: [],
             missedLetters: [],
+            guessedLetters: [],
             lives: 11,
             gameOver: false,
             gameWon: false,
@@ -27,31 +28,25 @@ class App extends React.Component {
         this.props.setListener(this.onKeyPress.bind(this));
 
         this.setNewGame = this.setNewGame.bind(this);
-
     }
 
-    fetchNewWord(callback) {
+    fetchNewWord() {
         fetch('http://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=false&includePartOfSpeech=noun&excludePartOfSpeech=given-name&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=11&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5')
             .then((response) => {
                 return response.text();
             })
             .then((body) => {
-                var wordnik = JSON.parse(body);
-                callback(wordnik.word);
+                var word = JSON.parse(body).word.toLowerCase();
                 this.setState({
-                    loading: false
+                    loading: false,
+                    word
                 })
             });
     }
 
-    componentWillMount() {
+    componentDidMount() {
         //Fetch random word here
-        this.fetchNewWord(word => {
-            this.setState({
-                word: word.toLowerCase(),
-                loading: false
-            });
-        })
+        this.fetchNewWord();
     }
 
     onKeyPress(event) {
@@ -77,7 +72,7 @@ class App extends React.Component {
             typedLetters
         });
 
-        //Check if letter is missed or not
+        //Check if letter is missed or guessed
         if (!this.state.word.includes(letter)) {
             var missedLetters = [].concat(this.state.missedLetters);
             missedLetters.push(letter);
@@ -85,6 +80,10 @@ class App extends React.Component {
                 lives: this.state.lives - 1,
                 missedLetters
             });
+        } else {
+            var guessedLetters = [].concat(this.state.guessedLetters);
+            guessedLetters.push(letter);
+            this.setState({guessedLetters});
         }
 
         //Check if game is won
@@ -106,30 +105,27 @@ class App extends React.Component {
 
     setNewGame() {
         this.setState({
-            loading: true,
+            word: '',
             typedLetters: [],
             missedLetters: [],
+            guessedLetters: [],
             lives: 11,
             gameOver: false,
-            gameWon: false
+            gameWon: false,
+            loading: true
         });
-        this.fetchNewWord(word => {
-            this.setState({
-                word: word.toLowerCase(),
-                loading: false
-            });
-        });
+        this.fetchNewWord();
     }
 
     render() {
         return (
             <div>
-                {this.state.loading ? <Loading /> : ''}
-                {this.state.gameOver ? <GameOver restartGame={this.setNewGame}/> : ''}
-                {this.state.gameWon ? <GameWon restartGame={this.setNewGame}/> : ''}
+                <Loading loading={this.state.loading} />
+                <GameOver gameOver={this.state.gameOver} restartGame={this.setNewGame}/>
+                <GameWon gameWon={this.state.gameWon} restartGame={this.setNewGame}/>
                 <Hangman lives={this.state.lives}/>
                 <MissedLetters missedLetters={this.state.missedLetters}/>
-                <Word maxWordLength={MAX_WORD_LENGTH} word={this.state.word} typedLetters={this.state.typedLetters}/>
+                <Word word={this.state.word} guessedLetters={this.state.guessedLetters}/>
             </div>
         );
     };

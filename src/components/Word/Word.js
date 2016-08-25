@@ -5,16 +5,32 @@ import WordLetter from './WordLetter';
 class Word extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            maxWordLength: props.maxWordLength
+            letters: new Array(this.MAX_WORD_LENGTH).fill(undefined)
         };
+
+        this.MAX_WORD_LENGTH = 11;
+
+        this.getLetters = this.getLetters.bind(this);
     }
 
-    getLetters(typedLetters) {
-        var word = (new Array(this.state.maxWordLength - this.props.word.length).fill(undefined)).concat(this.props.word.split(''))
-        return word.map((letter, index) => {
+    shouldComponentUpdate(nextProps) {
+        return (nextProps.guessedLetters.length !== this.props.guessedLetters.length) || (nextProps.word !== this.props.word);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.word !== this.state.word) {
+            this.setState({
+                letters: new Array(this.MAX_WORD_LENGTH - nextProps.word.length).fill(undefined).concat(nextProps.word.split(''))
+            });
+        }
+    }
+
+    getLetters() {
+        return this.state.letters.map((letter, index) => {
             return (
-                <WordLetter key={index} letter={letter} type={typeof letter == 'undefined' ? undefined : typedLetters.indexOf(letter) >= 0}/>
+                <WordLetter key={index} letter={letter} type={typeof letter == 'undefined' ? undefined : this.props.guessedLetters.indexOf(letter) >= 0}/>
             )
         });
     }
@@ -22,7 +38,7 @@ class Word extends React.Component {
     render() {
         return (
             <div className="word-container">
-                {this.getLetters(this.props.typedLetters)}
+                {this.getLetters()}
             </div>
         )
     };
