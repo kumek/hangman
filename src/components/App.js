@@ -54,7 +54,7 @@ class App extends React.Component {
     onKeyPress(event) {
         //Check if key pressed is a letter
         if ((event.keyCode >= 65) && (event.keyCode <= 90)) {
-            this.newLetterTyped(event.key);
+            this.newLetterTyped(event.key.toLowerCase());
         }
     }
 

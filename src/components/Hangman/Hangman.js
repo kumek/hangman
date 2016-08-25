@@ -5,52 +5,50 @@ const Hangman = (props) => {
     var hangmanParts = [
         {
             lives: 11,
-            el: <HangmanParts.Bar />
+            el: <HangmanParts.Bar key="hangmanBar"/>
         },{
             lives: 4,
-            el: <HangmanParts.LeftHand />
+            el: <HangmanParts.LeftHand key="hangmanLeftHand"/>
         },{
             lives: 5,
-            el: <HangmanParts.RightHand />
+            el: <HangmanParts.RightHand key="hangmanRightHand"/>
         },{
             lives: 1,
-            el: <HangmanParts.RightFoot />
+            el: <HangmanParts.RightFoot key="hangmanRightFoot"/>
         },{
             lives: 0,
-            el: <HangmanParts.LeftFoot />
+            el: <HangmanParts.LeftFoot key="hangmanLeftFoot"/>
         },{
             lives: 2,
-            el: <HangmanParts.LeftLeg />
+            el: <HangmanParts.LeftLeg key="hangmanLeftLeg"/>
         },{
             lives: 3,
-            el: <HangmanParts.RightLeg />
+            el: <HangmanParts.RightLeg key="hangmanRightLeg"/>
         },{
             lives: 9,
-            el: <HangmanParts.Neck />
+            el: <HangmanParts.Neck key="hangmanNeck"/>
         },{
             lives: 10,
-            el: <HangmanParts.Head />
+            el: <HangmanParts.Head key="hangmanHead"/>
         },{
             lives: 8,
-            el: <HangmanParts.Corpus />
+            el: <HangmanParts.Corpus key="hangmanCorpus"/>
         },{
             lives: 6,
-            el: <HangmanParts.LeftArm />
+            el: <HangmanParts.LeftArm key="hangmanLeftArm"/>
         },{
             lives: 7,
-            el: <HangmanParts.RightArm />
+            el: <HangmanParts.RightArm key="hangmanRightArm"/>
         }
     ];
 
     var partsToRender = () => {
-        return hangmanParts.filter(element => {
+        return hangmanParts.filter((element) => {
             return (element.lives >= props.lives);
         }).map(element => {
             return element.el;
         });
     };
-
-    //console.log(partsToRender());
 
     return (
         <svg id="hangman" viewBox="0 0 600 600" >
