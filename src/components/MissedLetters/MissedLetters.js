@@ -1,19 +1,20 @@
 import React from 'react';
 
-const MissedLetters = (props) => {
-    var missedLetters = props.typedLetters.filter(letter => {
-        return !props.word.includes(letter);
-    });
+class MissedLetters extends React.Component {
+    shouldComponentUpdate(nextProps) {
+        return nextProps.missedLetters.length !== this.props.missedLetters.length;
+    }
 
-    return (
-        <div className="missed-letters-container">
-            <h2 className="title">You missed:</h2>
+    render() {
+        return (
+            <div className="missed-letters-container">
+                <h2 className="title">You missed:</h2>
             <span className="missed">
-                {missedLetters.join('')}
+                {this.props.missedLetters.join('')}
             </span>
-
-        </div>
-    );
-};
+            </div>
+        );
+    };
+}
 
 export default MissedLetters;

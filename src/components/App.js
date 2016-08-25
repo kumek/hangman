@@ -17,6 +17,7 @@ class App extends React.Component {
         this.state = {
             word: '',
             typedLetters: [],
+            missedLetters: [],
             lives: 11,
             gameOver: false,
             gameWon: false,
@@ -78,8 +79,11 @@ class App extends React.Component {
 
         //Check if letter is missed or not
         if (!this.state.word.includes(letter)) {
+            var missedLetters = [].concat(this.state.missedLetters);
+            missedLetters.push(letter);
             this.setState({
-                lives: this.state.lives - 1
+                lives: this.state.lives - 1,
+                missedLetters
             });
         }
 
@@ -104,6 +108,7 @@ class App extends React.Component {
         this.setState({
             loading: true,
             typedLetters: [],
+            missedLetters: [],
             lives: 11,
             gameOver: false,
             gameWon: false
@@ -123,7 +128,7 @@ class App extends React.Component {
                 {this.state.gameOver ? <GameOver restartGame={this.setNewGame}/> : ''}
                 {this.state.gameWon ? <GameWon restartGame={this.setNewGame}/> : ''}
                 <Hangman lives={this.state.lives}/>
-                <MissedLetters word={this.state.word} typedLetters={this.state.typedLetters}/>
+                <MissedLetters missedLetters={this.state.missedLetters}/>
                 <Word maxWordLength={MAX_WORD_LENGTH} word={this.state.word} typedLetters={this.state.typedLetters}/>
             </div>
         );

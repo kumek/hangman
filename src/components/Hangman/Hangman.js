@@ -50,7 +50,7 @@ const Hangman = (props) => {
         });
     };
 
-    console.log(partsToRender());
+    //console.log(partsToRender());
 
     return (
         <svg id="hangman" viewBox="0 0 600 600" >

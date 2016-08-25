@@ -1,7 +1,7 @@
 import express from 'express';
 import webpack from 'webpack';
 import path from 'path';
-import config from './webpack.config';
+import config from './webpack.config.babel';
 import open from 'open';
 import colors from 'colors';
 
@@ -26,7 +26,7 @@ app.listen(port, function(err) {
     if (err) {
         console.log(err);
     } else {
-        open(`http://localhost:${port}`);
+        //open(`http://localhost:${port}`);
     }
 });
 
